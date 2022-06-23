@@ -3,10 +3,12 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
 
+app.use(cors())
+
 //ngirim dari json
 app.use(bodyParser.json())
 //ngirim data semisal file gambar dsb
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const db = require('./app/models')
 db.mongoose
@@ -20,7 +22,7 @@ db.mongoose
     .catch(error => {
         console.log("Can't connect to the database!", error)
         process.exit()
-    }) 
+    })
 
 app.get('/', (req, res) => {
     res.json({
